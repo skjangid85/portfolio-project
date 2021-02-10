@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <title>Rishabh Portfolio</title>
+    <title>Rishabh's Blogs</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -56,13 +56,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">     
                 <li class="nav-item">
-                    <a class="nav-link" href="http://twitter.com">Twitter</a>
+                    <a class="nav-link" href="#">Twitter</a>
                 </li>         
               <li class="nav-item">
                 <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'allblogs' %}">Blogs</a>
+                <a class="nav-link active" href="{% url 'allblogs' %}">Blogs</a>
               </li>              
             </ul>
           </div>
@@ -72,41 +72,36 @@
 
 <main>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Rishabh Portfolio</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        
-        <img src="{% static 'rishabh.jpg' %}" alt="" height="250" width="auto">
-        <p>
-          <br>
-          <a href="mailto:skjangid1785@hotmail.com" class="btn btn-primary my-2">Email Me</a>         
-        </p>
-      </div>
-    </div>
-  </section>
+    <div class="container">
+        <h1 class="fw-dark mt-5 text-center">Welcome to Rishabh's Blogs</h1>    
+        <br>
+        <h2 class="fw-dark">Latest Blogs</h2> 
+        <hr>
+    </div>  
 
   <div class="album py-5 bg-light">
+    
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        {% for job in jobs.all %}
-        <div class="col">
-          <div class="card shadow-sm">            
-            <img src="{{ job.image.url }}" alt="" height="225" width="auto" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">                
+        {% for blog in blogs.all %}
+        <div class="row">
+            <div class="col-md-8">
+              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                  <!-- <strong class="d-inline-block mb-2 text-primary"></strong> -->
+                  <h3 class="mb-0">{{ blog.title }}</h3>
+                  <div class="mb-1 text-muted">{{ blog.pub_date_pretty }}</div>
+                  <p class="card-text mb-auto">{{ blog.summary }}</p>
+                  <a href="{% url 'detail' blog.id %}" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                  <!-- <svg class="bd-placeholder-img" width="300" height="250" xmlns="{{ blog.image.url }}" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                  <img src="{{ blog.image.url }}" alt="" height="250" width="auto"/>
+                </div>
               </div>
             </div>
-          </div>
         </div>
-        {%  endfor %}
-      </div>      
+        {%  endfor %}         
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted py-5">
